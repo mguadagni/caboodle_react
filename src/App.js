@@ -1,17 +1,12 @@
 import './App.css';
+import AppRouter from './components/Routers/AppRouter';
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Wecome to Caboodle! 
-          </p>
-      </header>
-      <p>
-          Users can buy, sell, or trade endless products! 
-        </p>
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 
