@@ -1,13 +1,12 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment} from 'react';
 import NavButton from '../NavBar/NavButton';
-import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = (props) => {
 
   return (
     <Fragment>
       <div style={{
-        backgroundColor: "#238C72",
+        backgroundColor: "#6A5ACD",
         position: 'fixed',
         width: '100%',
         zIndex: 9999,
@@ -19,7 +18,7 @@ const Navbar = (props) => {
         justifyContent: 'space-between'
       }}>
         <h1 style={{
-          fontFamily: "monospace",
+          fontFamily: "cursive",
           fontWeight: 'bold',
           fontSize: '2.5em',
           margin: "0 20px"

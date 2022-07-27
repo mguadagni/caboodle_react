@@ -9,12 +9,12 @@ const NavButton = (props) => {
     <NavLink 
       to={props.to} 
       style={{
+        fontFamily: "cursive",
         background: '',
         textDecoration: 'none',
         fontSize: '1.25em',
         color: hover ? "#f1f1f1" : "#010101",
         fontWeight: 600,
-        textShadow: '1px 1px #2fbe9b',
         textAlign: 'center',
         whiteSpace: 'nowrap',
         margin: '0 10px',
