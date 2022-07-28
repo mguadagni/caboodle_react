@@ -24,7 +24,7 @@ const LoginForm = (props) => {
                     required
                     />
                 </InLineInputContainer>
-                <InLineInputContainer>
+                <InLineInputContainer style={{marginTop: '0.25em'}}>
                     <Input 
                     name="password"
                     id="password"
@@ -35,7 +35,10 @@ const LoginForm = (props) => {
                     type="password"
                     />
                 </InLineInputContainer>
-                <Button>Login</Button>
+                <div>
+                <Button style={{marginTop: '1em'}}>Login</Button>
+                <Button style={{marginTop: '1em'}}>Sign Up</Button>
+                </div>
             </Form>
         </Container>
     )
