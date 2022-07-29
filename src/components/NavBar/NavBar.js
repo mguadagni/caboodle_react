@@ -1,12 +1,15 @@
-import React, { Fragment} from 'react';
+import React, { Fragment, useContext} from 'react';
 import NavButton from '../NavBar/NavButton';
+import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = (props) => {
+
+  const [auth] = useContext(AuthContext);
 
   return (
     <Fragment>
       <div style={{
-        backgroundColor: "#6A5ACD",
+        backgroundColor: "#DC143C",
         position: 'fixed',
         width: '100%',
         zIndex: 9999,
@@ -30,11 +33,22 @@ const Navbar = (props) => {
           userSelect: "none",
           alignItems: 'center',
         }}>
+          {auth.id ? (
+            <p style={{
+              fontFamily: "cursive",
+              fontSize: '0.9em'
+            }}>{auth.name}</p>
+          ) : null}
             <NavButton to="/" label="Home" />
-            <NavButton to="/login" label="Login" />
-            <NavButton to="/listings" label="Listings" />
-            <NavButton to="/profile" label="Profile" />
-            
+            {auth.id ? (
+              <Fragment>
+                <NavButton to="/listings" label="Listings" />
+                <NavButton to="/profile" label="Profile" />
+              </Fragment>
+            ) : (
+              <NavButton to="/login" label="Login" />
+            )}
+
         </div>
         </div>
       <div style={{height: '75px'}} />

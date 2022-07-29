@@ -35,10 +35,9 @@ const LoginForm = (props) => {
                     type="password"
                     />
                 </InLineInputContainer>
-                <div>
                 <Button style={{marginTop: '1em'}}>Login</Button>
-                <Button style={{marginTop: '1em'}}>Sign Up</Button>
-                </div>
+                <p style={{marginTop: '3em'}}>Don't have an account?</p>
+                <Button>Sign Up!</Button>
             </Form>
         </Container>
     )
