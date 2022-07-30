@@ -30,6 +30,7 @@ const Login = () => {
             navigate('/');
         } catch (error) {
             console.error(error.response ? error.response.data : error.message)
+            alert("User not found. Please try again.")
         }
     }
 
