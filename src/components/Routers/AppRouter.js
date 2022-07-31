@@ -6,6 +6,7 @@ import Listings from "../Listings/Listings";
 import Login from "../Auth/Login";
 import Profile from "../Profile/Profile";
 import Navbar from "../NavBar/NavBar";
+import SignUp from '../Auth/SignUp';
 
 const AppRouter = () => {
 
@@ -17,6 +18,7 @@ const AppRouter = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/listings" element={<Listings />} />
+                <Route path="/signup" element={<SignUp />} />
             </Routes>
         </Container>
     )

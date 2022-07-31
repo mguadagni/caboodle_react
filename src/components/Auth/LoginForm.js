@@ -36,9 +36,10 @@ const LoginForm = (props) => {
                     />
                 </InLineInputContainer>
                 <Button style={{marginTop: '1em'}}>Login</Button>
+            </Form>
                 <p style={{marginTop: '3em'}}>Don't have an account?</p>
                 <Button>Sign Up!</Button>
-            </Form>
+            
         </Container>
     )
 }
