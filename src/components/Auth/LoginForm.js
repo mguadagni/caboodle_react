@@ -1,47 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../common/Container';
 import Form from '../common/Form';
 import InLineInputContainer from '../common/InlineInputContainer';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import {useNavigate} from 'react-router-dom';
+import Login from './Login';
+import Proptypes from 'prop-types';
 
-const LoginForm = (props) => {
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/api/auth/signin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+    .then(data => data.json())
+}
 
-    const handleChange = (e) => {
-        props.updateForm(e.target.id, e.target.value)
+const LoginForm = ({setToken}) => {
+
+    const navigate = useNavigate();
+
+    const handleSignUpButton = (e) => {
+        navigate('/signup');
+    }
+
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+            username,
+            password
+        });
+        setToken(token);
+        navigate('/');
     }
 
     return (
         <Container>
-            <Form onSubmit={props.onSubmit} style={{marginTop: '2em'}}>
-                <InLineInputContainer>
-                    <Input 
-                    name="id"
-                    id="id"
-                    placeholder="Username"
-                    value={props.query.id}
-                    onChange={handleChange}
-                    required
-                    />
-                </InLineInputContainer>
-                <InLineInputContainer style={{marginTop: '0.25em'}}>
-                    <Input 
-                    name="password"
-                    id="password"
-                    placeholder="Password"
-                    value={props.query.password}
-                    onChange={handleChange}
-                    required
-                    type="password"
-                    />
-                </InLineInputContainer>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    <p>Username</p>
+                    <Input type='text' onChange={e => setUserName(e.target.value)} />
+                </label>
+                <label>
+                <p>Password</p>
+                    <Input type="password" onChange={e => setPassword(e.target.value)} />
+                </label>
                 <Button style={{marginTop: '1em'}}>Login</Button>
-            </Form>
-                <p style={{marginTop: '3em'}}>Don't have an account?</p>
+            </form>
+            <Form onSubmit={handleSignUpButton}>
+                <p style={{marginTop: '4em'}}>Don't have an account?</p>
                 <Button>Sign Up!</Button>
+            </Form>
             
         </Container>
     )
 }
 
 export default LoginForm;
+
+LoginForm.propTypes = {
+    setToken: Proptypes.func.isRequired
+}

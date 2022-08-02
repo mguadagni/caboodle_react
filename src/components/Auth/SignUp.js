@@ -19,13 +19,11 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const onSubmit = () => {
-        alert('hi');
+        navigate('/signup');
     }
 
     return (
-        <Container>
             <SignUpForm onSubmit={onSubmit} query={query} updateForm={updateForm}/>
-        </Container>
     )
 }
 

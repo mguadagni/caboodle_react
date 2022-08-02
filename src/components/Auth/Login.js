@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import Container from '../common/Container';
 import { AuthContext } from '../Providers/AuthProvider';
 import LoginForm from './LoginForm';
+import SignUp from './SignUp';
 
 const Login = () => {
     const [query, setQuery] = useState({
@@ -32,6 +33,12 @@ const Login = () => {
             console.error(error.response ? error.response.data : error.message)
             alert("User not found. Please try again.")
         }
+    }
+
+    const [token, setToken] = useState();
+
+    if (!token) {
+        return <LoginForm setToken={setToken} />
     }
 
     return (
