@@ -13,7 +13,7 @@ const Home = (props) => {
         <Container>
             <Splash image={shopfront} style={{color:"#DC143C"}}>
                 <h1 style={{textShadow: "1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white"}}>
-                    Welcome to Caboodle {auth.name} !
+                    Welcome to Caboodle {auth.username} !
                 </h1>
                 
                 <h2 style={{textShadow: "1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white"}}>
