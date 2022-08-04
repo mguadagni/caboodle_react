@@ -1,72 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Container from '../common/Container';
 import Form from '../common/Form';
 import InLineInputContainer from '../common/InlineInputContainer';
 import Input from '../common/Input';
 import Button from '../common/Button';
 import {useNavigate} from 'react-router-dom';
-import Proptypes from 'prop-types';
 
-// async function loginUser(credentials) {
+const LoginForm = () => {
 
-//     return fetch('http://localhost:8080/api/auth/signin', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(credentials)
-//     })
-//     .then(data => data.json())
-// }
+    const userRef = useRef();
+    const errRef = useRef();
 
-const LoginForm = (/*{setToken},*/ props) => {
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setsuccess] = useState(false);
+    
+    // useEffect(() => {
+    //     userRef.current.focus();
+    // }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [user, pwd])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(user, pwd)
+        setUser('');
+        setPwd('');
+        setsuccess(true);
+    }
 
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        props.updateForm(e.target.id, e.target.value)
-    }
+    // const handleChange = (e) => {
+    //     props.updateForm(e.target.id, e.target.value)
+    // }
 
     const handleSignUpButton = (e) => {
         navigate('/signup');
     }
 
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
-
-    // const handleSubmit = async e => {
-    //     e.preventDefault();
-    //     const token = await loginUser({
-    //         username,
-    //         password
-    //     });
-    //     setToken(token);
-    //     navigate('/');
-    // }
-
-    console.log(props);
     return (
+        <>
+        {success ? (
+            <section>
+                <h1>You are logged in!</h1>
+                <br />
+                <p>
+                    <a href="http://localhost:3000/">Go to Home</a>
+                </p>
+            </section>
+        ) : (
         <Container>
-            <Form onSubmit={props.onSubmit}>
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} 
+            aria-live="assertive">{errMsg}</p>
+            <Form onSubmit={handleSubmit}>
                 <InLineInputContainer style={{marginTop: '1em'}}>
                     <Input
-                        name="id"
+                        name="username"
                         id="username"
                         placeholder="Username"
-                        value={props.query.username}
-                        onChange={handleChange}
+                        ref={userRef}
+                        onChange={(e) => setUser(e.target.value)}
+                        value={user}
                         required
                     />
                 </InLineInputContainer>
-                <InLineInputContainer style={{marginTop: '0.25em'}}>
+                <InLineInputContainer style={{marginTop: '1em'}}>
                     <Input
+                        type="password"
                         name="password"
                         id="password"
                         placeholder="Password"
-                        value={props.query.password}
-                        onChange={handleChange}
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
                         required
-                        type="password"
                     />
                 </InLineInputContainer>
                 <Button style={{marginTop: '1em'}}>Login</Button>
@@ -75,13 +85,10 @@ const LoginForm = (/*{setToken},*/ props) => {
                 <p style={{marginTop: '4em'}}>Don't have an account?</p>
                 <Button>Sign Up!</Button>
             </Form>
-            
         </Container>
+        )}
+        </>
     )
 }
 
 export default LoginForm;
-
-LoginForm.propTypes = {
-    setToken: Proptypes.func.isRequired
-}
