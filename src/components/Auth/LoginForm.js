@@ -1,13 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import Container from '../common/Container';
 import Form from '../common/Form';
 import InLineInputContainer from '../common/InlineInputContainer';
 import Input from '../common/Input';
 import Button from '../common/Button';
 import {useNavigate} from 'react-router-dom';
+import { AuthContext } from '../Providers/AuthProvider';
+import axios from '../../axios';
+const LOGIN_URL = '/auth/signin'
 
 const LoginForm = () => {
 
+    const {setAuth} = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -26,10 +30,37 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user, pwd)
-        setUser('');
-        setPwd('');
-        setsuccess(true);
+
+        try {
+            const res = await axios.post(LOGIN_URL, 
+                JSON.stringify({user, pwd}),
+                {
+                    headers: {'Content-Type': 'application/json'},
+                    withCredentials: true
+                }
+                );
+            console.log(JSON.stringify(res?.data));
+            const accessToken = res?.data?.accessToken;
+            const roles = res?.data.roles;
+            setAuth({user, pwd, roles, accessToken});
+            setUser('');
+            setPwd('');
+            setsuccess(true);
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            alert(err);
+            err.current.focus();
+        }
+
+        
     }
 
     const navigate = useNavigate();

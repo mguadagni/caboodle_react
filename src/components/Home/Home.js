@@ -7,13 +7,13 @@ import { AuthContext } from '../Providers/AuthProvider';
 
 const Home = (props) => {
 
-    const [auth] = useContext(AuthContext);
+    //const [auth] = useContext(AuthContext);
 
     return (
         <Container>
             <Splash image={shopfront} style={{color:"#DC143C"}}>
                 <h1 style={{textShadow: "1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white"}}>
-                    Welcome to Caboodle {auth.username} !
+                    Welcome to Caboodle ! 
                 </h1>
                 
                 <h2 style={{textShadow: "1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white"}}>

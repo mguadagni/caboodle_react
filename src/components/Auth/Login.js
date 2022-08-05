@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Container from '../common/Container';
-import { AuthContext } from '../Providers/AuthProvider';
+//import { AuthContext } from '../Providers/AuthProvider';
 import LoginForm from './LoginForm';
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
         password:"",
     })
 
-    const [auth, setAuth] = useContext(AuthContext)
+    //const [auth, setAuth] = useContext(AuthContext)
     const navigate = useNavigate();
 
     const updateForm = (field, value) => {
@@ -33,7 +33,7 @@ const Login = () => {
                 }
             })
 
-            setAuth({id: res.data.id, name: res.data.username})
+            //setAuth({id: res.data.id, name: res.data.username})
             navigate('/');
         } catch (error) {
             console.error(error.response ? error.response.data : error.message)
