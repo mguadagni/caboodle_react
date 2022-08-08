@@ -6,16 +6,13 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 import {useNavigate} from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
-import axios from '../../axios';
-const LOGIN_URL = '/auth/signin'
-
-// 1:13:00 ch12 java React 2 3
+//import axios from '../../config';
 
 const LoginForm = () => {
 
-    const {setAuth} = useContext(AuthContext);
-    const userRef = useRef();
-    const errRef = useRef();
+    // const {setAuth} = useContext(AuthContext);
+    // const userRef = useRef();
+    // const errRef = useRef();
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
@@ -26,44 +23,44 @@ const LoginForm = () => {
     //     userRef.current.focus();
     // }, [])
 
-    useEffect(() => {
-        setErrMsg('');
-    }, [user, pwd])
+    // useEffect(() => {
+    //     setErrMsg('');
+    // }, [user, pwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const res = await axios.post(LOGIN_URL, 
-                JSON.stringify({user, pwd}),
-                {
-                    headers: {'Content-Type': 'application/json'},
-                    withCredentials: true
-                }
-                );
-            console.log(JSON.stringify(res?.data));
-            const accessToken = res?.data?.accessToken;
-            const roles = res?.data.roles;
-            setAuth({user, pwd, roles, accessToken});
-            setUser('');
-            setPwd('');
-            setsuccess(true);
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg('Login Failed');
-            }
-            alert(err);
-            err.current.focus();
-        }
+    }
+    //     try {
+    //         const res = await axios.post(LOGIN_URL, 
+    //             JSON.stringify({user, pwd}),
+    //             {
+    //                 headers: {'Content-Type': 'application/json'},
+    //                 withCredentials: true
+    //             }
+    //             );
+    //         console.log(JSON.stringify(res?.data));
+    //         const accessToken = res?.data?.accessToken;
+    //         const roles = res?.data.roles;
+    //         setAuth({user, pwd, roles, accessToken});
+    //         setUser('');
+    //         setPwd('');
+    //         setsuccess(true);
+    //     } catch (err) {
+    //         if (!err?.response) {
+    //             setErrMsg('No Server Response');
+    //         } else if (err.response?.status === 400) {
+    //             setErrMsg('Missing Username or Password');
+    //         } else if (err.response?.status === 400) {
+    //             setErrMsg('Unauthorized');
+    //         } else {
+    //             setErrMsg('Login Failed');
+    //         }
+    //         alert(err);
+    //         err.current.focus();
+    //     }
 
         
-    }
+    // }
 
     const navigate = useNavigate();
 
@@ -87,15 +84,15 @@ const LoginForm = () => {
             </section>
         ) : (
         <Container>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} 
-            aria-live="assertive">{errMsg}</p>
-            <Form onSubmit={handleSubmit}>
+            {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} 
+            aria-live="assertive">{errMsg}</p> */}
+            <Form /*onSubmit={handleSubmit}*/>
                 <InLineInputContainer style={{marginTop: '1em'}}>
                     <Input
                         name="username"
                         id="username"
                         placeholder="Username"
-                        ref={userRef}
+                        // ref={userRef}
                         onChange={(e) => setUser(e.target.value)}
                         value={user}
                         required

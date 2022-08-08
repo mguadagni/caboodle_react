@@ -20,7 +20,7 @@ const styles = {
     minWidth: 400,
     borderRadius: 5,
     overflow: "hidden",
-    flexWrap: "wrap",
+    //flexWrap: "wrap",
   },
   error: {
     color: "red",

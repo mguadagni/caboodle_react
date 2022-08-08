@@ -6,62 +6,78 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 import {useRef, useState, useEffect} from 'react';
 
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}/;
-
-const SignUpForm = () => {
-
-    const userRef = useRef();
-    const errRef = useRef();
-
-    const [user, setUser] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
-
-    const [pwd, setPwd] = useState('');
-    const [validPwd, setValidPwd] = useState(false);
-    const [pwdFocus, setPwdFocus] = useState(false);
-
-    const [matchPwd, setMatchPwd] = useState('');
-    const [validMatch, setValidMatch] = useState(false);
-    const [matchFocus, setMatchFocus] = useState(false);
+const SignUpForm = ({onSubmit, onChange, newUser}) => {
 
     const handleChange = (e) => {
-        props.updateForm(e.target.id, e.target.value)
+        onChange(e.target.id, e.target.value);
     }
 
     return (
         <Container>
-            <Form onSubmit={props.onSubmit} style={{marginTop: '2em'}}>
-                <h1>Create a User!</h1>
+            <h1>Fill in to create a new user!</h1>
+            <Form onSubmit={onSubmit}>
+                <InLineInputContainer>
+                    <Input 
+                    name="fName"
+                    id="fName"
+                    value={newUser.fName}
+                    placeholder={"First Name*"}
+                    onChange={handleChange}
+                    required
+                    />
+                    <Input 
+                    name="lName"
+                    id="lName"
+                    value={newUser.lName}
+                    placeholder={"Last Name*"}
+                    onChange={handleChange}
+                    required
+                    />
+                    <Input 
+                    name="age"
+                    id="age"
+                    value={newUser.age}
+                    placeholder={"Age"}
+                    onChange={handleChange}
+                    type="number"
+                    />
+                </InLineInputContainer>
                 <InLineInputContainer>
                     <Input 
                     name="email"
                     id="email"
-                    placeholder="Email"
-                    value={props.query.id}
+                    value={newUser.email}
+                    placeholder={"Email Address*"}
                     onChange={handleChange}
+                    type="email"
+                    required
                     />
                 </InLineInputContainer>
-                <InLineInputContainer style={{marginTop: '0.25em'}}>
+                <InLineInputContainer>
                     <Input 
-                    name="id"
-                    id="id"
-                    placeholder="Username"
-                    value={props.query.id}
+                    name="username"
+                    id="username"
+                    value={newUser.username}
+                    placeholder={"Username*"}
                     onChange={handleChange}
+                    required
                     />
                 </InLineInputContainer>
-                <InLineInputContainer style={{marginTop: '0.25em'}}>
+                <InLineInputContainer>
                     <Input 
                     name="password"
                     id="password"
-                    placeholder="Password"
-                    value={props.query.id}
+                    value={newUser.password}
+                    placeholder={"Password*"}
                     onChange={handleChange}
+                    type="password"
+                    required
                     />
                 </InLineInputContainer>
-                <Button>Sign Up</Button>
+                <p>* = Required Fields</p>
+                <Button style={{marginTop: '1em'}}>
+                    Submit
+                </Button>
             </Form>
         </Container>
     )
