@@ -46,7 +46,7 @@ const SignUp = (props) => {
         try {
             const res = await axios.post(`${apiHostUrl}/api/auth/signin`, data);
             console.log(res.data);
-            createProfile(data, res.data.token);
+            createProfile(data, res.data.accessToken);
         } catch (err) {
             console.error(err.response.data);
         }

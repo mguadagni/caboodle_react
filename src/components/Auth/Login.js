@@ -2,43 +2,47 @@ import axios from 'axios';
 import React, {useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Container from '../common/Container';
-//import { AuthContext } from '../Providers/AuthProvider';
 import LoginForm from './LoginForm';
+import {AuthContext} from '../Providers/AuthProvider';
 
 const Login = () => {
 
-    // //const [auth, setAuth] = useContext(AuthContext)
-    // const navigate = useNavigate();
+    const [auth, setAuth] = useContext(AuthContext)
+    console.log(auth);
 
-    // const updateForm = (field, value) => {
-    //     setQuery({
-    //         ...query,
-    //         [field]:value
-    //     })
-    // }
+    const [query, setQuery] = useState({
+        username: "",
+        pasword:"",
+    })
 
-    // const onSubmit = async () => {
-    //     const data = query;
+    const updateForm = (field, value) => {
+        setQuery({
+            ...query,
+            [field]:value
+        })
+    }
 
-    //     try {
-    //         const res = await axios.post(`http://localhost:8080/api/auth/signin/`, {}, {
-    //             auth: {
-    //                 username: query.id,
-    //                 password: query.password
-    //             }
-    //         })
+    const navigate = useNavigate();
 
-    //         //setAuth({id: res.data.id, name: res.data.username})
-    //         navigate('/');
-    //     } catch (error) {
-    //         console.error(error.response ? error.response.data : error.message)
-    //         alert("User not found. Please try again.")
-    //     }
-    // }
+    const onSubmit = async () => {
+        const data = query;
+
+        try {
+            //const host = 
+            const res = await axios.post(`http://localhost:8080/api/auth/signin/`, query);
+            const profileRes = await axios.get(`http://localhost:8080/api/`)
+
+            //setAuth({id: res.data.id, name: res.data.username})
+            navigate('/');
+        } catch (error) {
+            console.error(error.response ? error.response.data : error.message)
+            alert("User not found. Please try again.")
+        }
+    }
 
     return (
         <Container>
-            <LoginForm />
+            <LoginForm onSubmit={onSubmit} query={query} updateForm={updateForm}/>
         </Container>
     )
 }
