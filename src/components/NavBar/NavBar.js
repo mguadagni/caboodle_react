@@ -1,10 +1,11 @@
 import React, { Fragment, useContext} from 'react';
 import NavButton from '../NavBar/NavButton';
+import Profile from '../Profile/Profile';
 import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = (props) => {
 
-  //const [auth] = useContext(AuthContext);
+  const [auth] = useContext(AuthContext);
 
   return (
     <Fragment>
@@ -33,21 +34,21 @@ const Navbar = (props) => {
           userSelect: "none",
           alignItems: 'center',
         }}>
-           {/* {auth.id ? (
+           {auth.profile ? (
             <p style={{
               fontFamily: "cursive",
               fontSize: '0.9em'
-            }}>{auth.name}</p>
-          ) : null}  */}
+            }}>{auth.profile.name}</p>
+          ) : null}
             <NavButton to="/" label="Home" />
-            {/* {auth.id ? (
-              <Fragment> */}
+            {auth.profile ? (
+              <Fragment> 
                 <NavButton to="/listings" label="Listings" />
                 <NavButton to="/profile" label="Profile" />
-              {/* </Fragment>
-            ) : ( */}
+               </Fragment>
+            ) : ( 
               <NavButton to="/login" label="Login" />
-            {/* )} */}
+            ) }
 
         </div>
         </div>

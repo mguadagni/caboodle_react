@@ -28,7 +28,7 @@ const Login = () => {
     const onSubmit = async () => {
 
         try {
-            const res = await axios.post(`${apiHostUrl}/auth/signin/`, query);
+            const res = await axios.post(`${apiHostUrl}/auth/signin`, query);
             const profileRes = await axios.get(`${apiHostUrl}/profiles/self`, {
                 headers: {
                     Authorization: `Bearer ${res.data.accessToken}`

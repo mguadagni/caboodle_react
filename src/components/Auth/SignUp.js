@@ -33,8 +33,9 @@ const SignUp = (props) => {
     }
 
     const createUser = async(data) => {
+        console.log(data);
         try {
-            const res = await axios.post(`${apiHostUrl}/api/auth/signup`, data);
+            const res = await axios.post(`${apiHostUrl}/auth/signup`, data);
             console.log(res.data);
             login(data);
         } catch (err) {
@@ -44,7 +45,7 @@ const SignUp = (props) => {
 
     const login = async (data) => {
         try {
-            const res = await axios.post(`${apiHostUrl}/api/auth/signin`, data);
+            const res = await axios.post(`${apiHostUrl}/auth/signin`, data);
             console.log(res.data);
             createProfile(data, res.data.accessToken);
         } catch (err) {
@@ -54,7 +55,7 @@ const SignUp = (props) => {
 
     const createProfile = async (data, token) => {
         try {
-            const res = await axios.post(`${apiHostUrl}/api/profiles/`, 
+            const res = await axios.post(`${apiHostUrl}/profiles/`, 
             data, 
             {
                 headers: {
