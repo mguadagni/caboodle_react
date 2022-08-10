@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import Container from '../common/Container';
 import LoginForm from './LoginForm';
 import {AuthContext} from '../Providers/AuthProvider';
+import { apiHostUrl } from '../../config';
 
 const Login = () => {
 
@@ -25,14 +26,16 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onSubmit = async () => {
-        const data = query;
 
         try {
-            //const host = 
-            const res = await axios.post(`http://localhost:8080/api/auth/signin/`, query);
-            const profileRes = await axios.get(`http://localhost:8080/api/`)
+            const res = await axios.post(`${apiHostUrl}/auth/signin/`, query);
+            const profileRes = await axios.get(`${apiHostUrl}/profiles/self`, {
+                headers: {
+                    Authorization: `Bearer ${res.data.accessToken}`
+                }
+            });
 
-            //setAuth({id: res.data.id, name: res.data.username})
+            setAuth({token: res.data.accessToken, profile: profileRes.data});
             navigate('/');
         } catch (error) {
             console.error(error.response ? error.response.data : error.message)

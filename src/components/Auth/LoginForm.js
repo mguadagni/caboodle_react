@@ -16,31 +16,21 @@ const LoginForm = ({query, updateForm, onSubmit}) => {
     // const [user, setUser] = useState('');
     // const [pwd, setPwd] = useState('');
     // const [errMsg, setErrMsg] = useState('');
-    const [success, setsuccess] = useState(false);
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    // }
+    // const [success, setsuccess] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        onSubmit(e);
+      }
 
     const handleSignUpButton = (e) => {
         navigate('/signup');
     }
 
     return (
-        <>
-        {success ? (
-            <section>
-                <h1>You are logged in!</h1>
-                <br />
-                <p>
-                    <a href="http://localhost:3000/">Go to Home</a>
-                </p>
-            </section>
-        ) : (
         <Container>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <InLineInputContainer style={{marginTop: '1em'}}>
                     <Input
                         name="username"
@@ -69,8 +59,6 @@ const LoginForm = ({query, updateForm, onSubmit}) => {
                 <Button>Sign Up!</Button>
             </Form>
         </Container>
-        )}
-        </>
     )
 }
 
