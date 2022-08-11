@@ -13,11 +13,6 @@ const LoginForm = ({query, updateForm, onSubmit}) => {
         updateForm(e.target.id, e.target.value)
     }
 
-    // const [user, setUser] = useState('');
-    // const [pwd, setPwd] = useState('');
-    // const [errMsg, setErrMsg] = useState('');
-    // const [success, setsuccess] = useState(false);
-
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {

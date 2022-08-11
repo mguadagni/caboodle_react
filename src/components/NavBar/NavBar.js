@@ -34,21 +34,21 @@ const Navbar = (props) => {
           userSelect: "none",
           alignItems: 'center',
         }}>
-           {auth.profile ? (
+            {auth.profile ? (
             <p style={{
               fontFamily: "cursive",
-              fontSize: '0.9em'
+              fontSize: '1em'
             }}>{auth.profile.name}</p>
-          ) : null}
+          ) : null} 
             <NavButton to="/" label="Home" />
-            {auth.profile ? (
+             {auth.profile ? ( 
               <Fragment> 
                 <NavButton to="/listings" label="Listings" />
                 <NavButton to="/profile" label="Profile" />
                </Fragment>
-            ) : ( 
+             ) : ( 
               <NavButton to="/login" label="Login" />
-            ) }
+             ) } 
 
         </div>
         </div>

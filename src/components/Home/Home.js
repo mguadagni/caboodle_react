@@ -7,7 +7,7 @@ import { AuthContext } from '../Providers/AuthProvider';
 
 const Home = (props) => {
 
-    //const [auth] = useContext(AuthContext);
+    const [auth] = useContext(AuthContext);
 
     return (
         <Container>
