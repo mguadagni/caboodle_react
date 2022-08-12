@@ -8,6 +8,7 @@ import Profile from "../Profile/Profile";
 import Navbar from "../NavBar/NavBar";
 import SignUp from '../Auth/SignUp';
 import CreateListing from '../Listings/CreateListing';
+import ListingInfo from "../Listings/ListingInfo";
 
 const AppRouter = () => {
 
@@ -21,6 +22,7 @@ const AppRouter = () => {
                 <Route path="/listings" element={<Listings />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/createListing" element={<CreateListing />} />
+                <Route path="/listingInfo" element={<ListingInfo />} />
             </Routes>
         </Container>
     )
