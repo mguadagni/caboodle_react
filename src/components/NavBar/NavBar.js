@@ -26,7 +26,9 @@ const Navbar = (props) => {
           fontWeight: 'bold',
           fontSize: '2.5em',
           margin: "0 20px"
-        }}>Caboodle</h1>
+        }}>
+          <NavButton to="/" label="Caboodle" />
+        </h1>
         <div style={{
           margin: '0 20px',
           flexDirection: 'row',
@@ -34,22 +36,14 @@ const Navbar = (props) => {
           userSelect: "none",
           alignItems: 'center',
         }}>
-            {auth.profile ? (
-            <p style={{
-              fontFamily: "cursive",
-              fontSize: '1em'
-            }}>{auth.profile.name}</p>
-          ) : null} 
-            <NavButton to="/" label="Home" />
-             {auth.profile ? ( 
+            {auth.profile ? ( 
               <Fragment> 
                 <NavButton to="/listings" label="Listings" />
-                <NavButton to="/profile" label="Profile" />
+                <NavButton to="/profile" label={auth.profile.name} />
                </Fragment>
-             ) : ( 
+            ) : ( 
               <NavButton to="/login" label="Login" />
-             ) } 
-
+            )}
         </div>
         </div>
       <div style={{height: '75px'}} />

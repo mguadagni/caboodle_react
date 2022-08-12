@@ -37,7 +37,7 @@ const Login = () => {
 
             setAuth({token: res.data.accessToken, profile: profileRes.data});
             navigate('/');
-            console.log(auth);
+            //console.log(auth);
         } catch (error) {
             console.error(error.response ? error.response.data : error.message)
             alert("User not found. Please try again.")

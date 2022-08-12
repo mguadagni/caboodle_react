@@ -1,11 +1,20 @@
 import React from "react";
 import BorderCard from '../common/BorderCard';
+import BorderCardAdv from '../common/BorderCardAdv';
 
-const Listing = () => {
+const Listing = (props) => {
+
+    const onClick = () => {
+        alert("Successful")
+    }
+
     return (
-        <BorderCard>
-            <h1>Listing</h1>
-        </BorderCard>
+            <BorderCard onClick={onClick}>
+                <h3>{props.listing.item}</h3> 
+                <h4 style={{marginTop: "1px"}}>
+                    Price: {props.listing.price}
+                </h4>
+            </BorderCard>
     )
 }
 

@@ -7,6 +7,7 @@ import Login from "../Auth/Login";
 import Profile from "../Profile/Profile";
 import Navbar from "../NavBar/NavBar";
 import SignUp from '../Auth/SignUp';
+import CreateListing from '../Listings/CreateListing';
 
 const AppRouter = () => {
 
@@ -19,6 +20,7 @@ const AppRouter = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/listings" element={<Listings />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/createListing" element={<CreateListing />} />
             </Routes>
         </Container>
     )

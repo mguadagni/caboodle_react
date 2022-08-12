@@ -1,19 +1,19 @@
 import React, {Fragment, useState, useEffect, useContext} from 'react'
 import { AuthContext } from '../Providers/AuthProvider';
 import Container from '../common/Container';
-import ListingsForm from '../Listings/ListingsForm'
-import ListingsData from './ListingsData';
 import Listing from '../Listings/Listing';
 import axios from 'axios';
 import { apiHostUrl } from '../../config';
-
-//2:39:00 timestamp
+import {useNavigate} from 'react-router-dom';
+import Button from '../common/Button';
 
 const Listings = () => {
 
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [auth] = useContext(AuthContext);
+
+
 
   useEffect(() => {
     const getListings = async () => {
@@ -25,7 +25,9 @@ const Listings = () => {
           }
         });
 
-        console.log(listingRes.data);
+        setListings(listingRes);
+        setLoading(false);
+        //console.log(listingRes);
 
       } catch (error){
       console.error(error.response ? error.response.data : error.message)
@@ -34,15 +36,29 @@ const Listings = () => {
   getListings();
   }, [])
 
+  const displayListings = () => {
+    //console.log(listings.data);
+    return listings.data.map(listing => {
+      return (
+      <Listing listing = {listing}/>
+      )
+    })
+  }
+
+  const navigate = useNavigate();
+
+  const handleCreateListing = (e) => {
+        navigate('/createListing');
+  }
+
   return (
     <Container>
-        <h1>Listings</h1>
-        {loading ? (<p>Loading...</p>) : (
-          <Fragment>
-            <Listing />
-            <Listing />
-          </Fragment>
-        )}
+      <h1>Listings</h1>
+      <button onClick={handleCreateListing}>Post a Listing</button>
+
+      {loading ? (<p>Loading...</p>) : 
+        displayListings()
+      }
     </Container>
   )
 }
