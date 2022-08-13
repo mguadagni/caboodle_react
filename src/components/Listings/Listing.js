@@ -17,6 +17,7 @@ const Listing = (props) => {
                 <h4 style={{marginTop: "1px"}}>
                     Price: {props.listing.price}
                 </h4>
+                
             </BorderCard>
     )
 }

@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import BorderCard from '../common/BorderCard';
 import Container from '../common/Container';
 import { AuthContext } from '../Providers/AuthProvider';
+import ProfileListings from './ProfileListings';
 
 const Profile = (props) => {
 
@@ -19,7 +20,8 @@ const Profile = (props) => {
                 <h2> Name: {auth.profile.name} </h2>
                 <h4 style={{marginTop: "1px"}}>Age: {auth.profile.age} </h4>
             </BorderCard>
-            {/* <p>{auth.profile.fname}</p> */}
+            <h1 style={{marginTop: "3em"}}>Current Listings</h1>
+            <ProfileListings />
         </Container>
 
     )
