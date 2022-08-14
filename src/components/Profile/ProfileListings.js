@@ -2,6 +2,8 @@ import React, {Fragment, useState, useEffect, useContext} from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import axios from 'axios';
 import { apiHostUrl } from '../../config';
+import ProfileListing from './ProfileListing';
+import Container from '../common/Container';
 
 const ProfileListings = () => {
 
@@ -28,8 +30,20 @@ const ProfileListings = () => {
         getProfileListings();
     }, [])
 
+    const displayProfileListings = () => {
+        return listings.data.map(listing => {
+            return (
+                <ProfileListing listing = {listing} />
+            )
+        })
+    }
+
     return (
-        <h3>Profile Listings</h3>
+        <Container>
+            {loading ? (<p>Loading...</p>) :
+            displayProfileListings()
+            }
+        </Container>
     )
 }
 

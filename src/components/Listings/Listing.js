@@ -15,9 +15,8 @@ const Listing = (props) => {
             <BorderCard onClick={onClick}>
                 <h3>{props.listing.item}</h3> 
                 <h4 style={{marginTop: "1px"}}>
-                    Price: {props.listing.price}
+                    Price: ${props.listing.price}
                 </h4>
-                
             </BorderCard>
     )
 }

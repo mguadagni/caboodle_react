@@ -15,12 +15,14 @@ const Profile = (props) => {
     return (
         <Container>
             <h1>Profile Page</h1>
-            {test()}
-            <BorderCard>
+            {/* {test()} */}
+            <BorderCard style={{textAlign: "center", width:"40%"}}>
                 <h2> Name: {auth.profile.name} </h2>
+                <h3 style={{marginTop: "1px"}}>Username: </h3>
+                <h3 style={{marginTop: "1px"}}>Email: </h3>
                 <h4 style={{marginTop: "1px"}}>Age: {auth.profile.age} </h4>
             </BorderCard>
-            <h1 style={{marginTop: "3em"}}>Current Listings</h1>
+            <h2 style={{marginTop: "2em"}}>Current Listings</h2>
             <ProfileListings />
         </Container>
 
