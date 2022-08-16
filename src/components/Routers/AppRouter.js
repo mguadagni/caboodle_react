@@ -22,7 +22,8 @@ const AppRouter = () => {
                 <Route path="/listings" element={<Listings />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/createListing" element={<CreateListing />} />
-                <Route path="/listingInfo" element={<ListingInfo />} />
+                {/* <Route path="/listingInfo" element={<ListingInfo />} /> */}
+                <Route path="/listings/:listingId" element={<ListingInfo />} />
             </Routes>
         </Container>
     )

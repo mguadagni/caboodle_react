@@ -18,8 +18,8 @@ const Profile = (props) => {
             {/* {test()} */}
             <BorderCard style={{textAlign: "center", width:"40%"}}>
                 <h2> Name: {auth.profile.name} </h2>
-                <h3 style={{marginTop: "1px"}}>Username: </h3>
-                <h3 style={{marginTop: "1px"}}>Email: </h3>
+                <h3 style={{marginTop: "1px"}}>Username: {auth.profile.user.username}</h3>
+                <h3 style={{marginTop: "1px"}}>Email: {auth.profile.user.email}</h3>
                 <h4 style={{marginTop: "1px"}}>Age: {auth.profile.age} </h4>
             </BorderCard>
             <h2 style={{marginTop: "2em"}}>Current Listings</h2>

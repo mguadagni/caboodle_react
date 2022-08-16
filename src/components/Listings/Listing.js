@@ -1,14 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import BorderCard from '../common/BorderCard';
 import BorderCardAdv from '../common/BorderCardAdv';
 import {useNavigate} from 'react-router-dom';
 
 const Listing = (props) => {
 
+    const [listingId, setListingId] = useState();
+
     const navigate = useNavigate();
 
     const onClick = () => {
-        navigate('/listingInfo');
+        const listingId = props.listing.id;
+        navigate('/listings/:listingId');
+
+        console.log(listingId);
     }
 
     return (
