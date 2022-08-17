@@ -9,6 +9,7 @@ import Navbar from "../NavBar/NavBar";
 import SignUp from '../Auth/SignUp';
 import CreateListing from '../Listings/CreateListing';
 import ListingInfo from "../Listings/ListingInfo";
+import Listing from "../Listings/Listing";
 
 const AppRouter = () => {
 

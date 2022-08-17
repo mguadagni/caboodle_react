@@ -48,7 +48,7 @@ const Listings = () => {
   const navigate = useNavigate();
 
   const handleCreateListing = (e) => {
-        navigate('/createListing');
+    navigate('/createListing');
   }
 
   return (

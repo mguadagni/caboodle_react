@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { AuthContext } from '../Providers/AuthProvider';
 import BorderCard from '../common/BorderCard';
 import {useNavigate, useParams} from 'react-router-dom';
@@ -9,9 +9,11 @@ import { apiHostUrl } from "../../config";
 const ListingInfo = (props) => {
 
     const [auth] = useContext(AuthContext);
+    const [listing, setListing] = useState({});
+    const [loading, setLoading] = useState(true);
 
-    const test = (props) => {
-        console.log(props.listingId);
+    const test = () => {
+        console.log(`${listingId}`);
     }
 
     const navigate = useNavigate();
@@ -19,40 +21,39 @@ const ListingInfo = (props) => {
   const goBack = (e) => {
         navigate('/listings');
   }
+  
+  useEffect(() => {
+    const getListingInfo = async () => {
+        try {
+            const listingRes = await axios.get(`${apiHostUrl}/listings/${listingId}`, {
+                headers: {
+                    Authorization: `Bearer ${auth.token}`
+                }
+            });
+            setListing(listingRes.data);
+            setLoading(false);
+            // console.log(listing.data);
 
-  const displayListingInfo = async () => {
-    try {
-        const listing = await axios.get(`${apiHostUrl}/listings/2`, {
-            headers: {
-                Authorization: `Bearer ${auth.token}`
-              }
-        });
-        console.log(listing.data);
-    } catch (error) {
+        } catch (error) {
         console.error(error.response ? error.response.data : error.message)
+        }
     }
-  }
+    getListingInfo();
+    }, [])
 
   let { listingId } = useParams();
 
     return (
         <Container>
-            <div>
-            {/* <h1>Listing Info</h1> */}
-            <h1>{listingId}</h1>
             {/* {test()}  */}
-            </div>
+            <h1>Listing Information</h1>
+            <h2>Item: {listing.item}</h2> 
+            <h4>
+                Price: {listing.price}
+            </h4>
             <div>
                 <button onClick={goBack}>Go Back</button>
             </div>
-            {/* {displayListingInfo()} */}
-            {/* <BorderCard>
-                <h1>Listing Info</h1>
-                <h3>{props.listing.item}</h3> 
-                <h4 style={{marginTop: "1px"}}>
-                    Price: {props.listing.price}
-                </h4>
-            </BorderCard> */}
         </Container>
     )
 }

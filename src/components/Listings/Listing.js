@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import BorderCard from '../common/BorderCard';
 import BorderCardAdv from '../common/BorderCardAdv';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 const Listing = (props) => {
 
@@ -11,10 +11,13 @@ const Listing = (props) => {
 
     const onClick = () => {
         const listingId = props.listing.id;
-        navigate('/listings/:listingId');
+        
+        navigate(`/listings/${listingId}`);
 
         console.log(listingId);
     }
+
+    // let { listingId } = useParams();
 
     return (
             <BorderCard onClick={onClick}>
