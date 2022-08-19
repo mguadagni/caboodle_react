@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import BorderCard from '../common/BorderCard';
 import BorderCardAdv from '../common/BorderCardAdv';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Listing = (props) => {
-
-    const [listingId, setListingId] = useState();
 
     const navigate = useNavigate();
 

@@ -4,6 +4,7 @@ import Form from '../common/Form';
 import InLineInputContainer from '../common/InlineInputContainer';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import {useNavigate} from 'react-router-dom';
 
 const CreateListingForm = ({query, updateForm, onSubmit}) => {
 
@@ -14,6 +15,12 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
     const handleSubmit = (e) => {
         onSubmit(e);
       }
+
+    const navigate = useNavigate();
+
+    const goBack = (e) => {
+    navigate('/listings');
+  }
 
     return (
         <Container>
@@ -40,6 +47,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                     />
                 </InLineInputContainer>
                 <Button style={{marginTop: '1em'}}>Create Listing</Button>
+                <Button onClick={goBack} style={{marginTop: '2em'}}>Go Back</Button>
             </Form>
         </Container>
     )

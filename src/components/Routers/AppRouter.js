@@ -10,6 +10,7 @@ import SignUp from '../Auth/SignUp';
 import CreateListing from '../Listings/CreateListing';
 import ListingInfo from "../Listings/ListingInfo";
 import Listing from "../Listings/Listing";
+import ProfileListingInfo from "../Profile/ProfileListingInfo";
 
 const AppRouter = () => {
 
@@ -23,8 +24,8 @@ const AppRouter = () => {
                 <Route path="/listings" element={<Listings />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/createListing" element={<CreateListing />} />
-                {/* <Route path="/listingInfo" element={<ListingInfo />} /> */}
                 <Route path="/listings/:listingId" element={<ListingInfo />} />
+                <Route path="/profileListings/:listingId" element={<ProfileListingInfo />} />
             </Routes>
         </Container>
     )
