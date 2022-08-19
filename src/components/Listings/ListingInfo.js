@@ -21,6 +21,14 @@ const ListingInfo = (props) => {
   const goBack = (e) => {
         navigate('/listings');
   }
+
+  const buyItem = () => {
+    alert('Success')
+  }
+
+  const tradeItem = () => {
+    alert('Success')
+  }
   
   useEffect(() => {
     const getListingInfo = async () => {
@@ -45,15 +53,20 @@ const ListingInfo = (props) => {
 
     return (
         <Container>
+        <h1>Listing Information</h1>
+        <BorderCard style={{alignItems: "center"}}>
             {/* {test()}  */}
-            <h1>Listing Information</h1>
+            
             <h2>Item: {listing.item}</h2> 
             <h4>
                 Price: {listing.price}
             </h4>
             <div>
-                <button onClick={goBack}>Go Back</button>
+                <button style={{marginRight: '1em'}} onClick={buyItem}>Buy</button>
+                <button style={{marginRight: '1em'}} onClick={tradeItem}>Trade</button>
+                <button onClick={goBack} >Go Back</button>
             </div>
+        </BorderCard>
         </Container>
     )
 }

@@ -30,7 +30,7 @@ const Navbar = (props) => {
           <NavButton to="/" label="Caboodle" />
         </h1>
         <div style={{
-          margin: '0 20px',
+          margin: '0 30px',
           flexDirection: 'row',
           background: "transparent",
           userSelect: "none",
@@ -40,6 +40,7 @@ const Navbar = (props) => {
               <Fragment> 
                 <NavButton to="/listings" label="Listings" />
                 <NavButton to="/profile" label={auth.profile.name} />
+                <NavButton to="/" label="Log Out" />
                </Fragment>
             ) : ( 
               <NavButton to="/login" label="Login" />

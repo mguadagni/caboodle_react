@@ -9,7 +9,7 @@ const Profile = (props) => {
     const [auth] = useContext(AuthContext);
 
     const test = () => {
-        console.log(auth.profile.name);
+        console.log(auth.profile);
     }
 
     return (
@@ -20,7 +20,8 @@ const Profile = (props) => {
                 <h2> Name: {auth.profile.name} </h2>
                 <h3 style={{marginTop: "1px"}}>Username: {auth.profile.user.username}</h3>
                 <h3 style={{marginTop: "1px"}}>Email: {auth.profile.user.email}</h3>
-                <h4 style={{marginTop: "1px"}}>Age: {auth.profile.age} </h4>
+                <h3 style={{marginTop: "1px"}}>Age: {auth.profile.age} </h3>
+                <h3 style={{marginTop: "1px"}}>Current Balance: ${auth.profile.balance} </h3>
             </BorderCard>
             <h2 style={{marginTop: "2em"}}>Current Listings</h2>
             <ProfileListings />

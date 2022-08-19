@@ -17,7 +17,7 @@ const NavButton = (props) => {
         fontWeight: 600,
         textAlign: 'center',
         whiteSpace: 'nowrap',
-        margin: '0 10px',
+        margin: '0 20px',
         opacity: hover ? "60%" : "100%"
       }}
       onMouseEnter={() => setHover(true)}
