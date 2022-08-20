@@ -46,6 +46,28 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                         type="number"
                     />
                 </InLineInputContainer>
+                <InLineInputContainer style={{marginTop: '1em'}}>
+                    <Input
+                        name="description"
+                        id="description"
+                        placeholder="Description"
+                        onChange={handleChange}
+                        value={query.description}
+                        required
+                    />
+                </InLineInputContainer>
+                <InLineInputContainer style={{marginTop: '1em'}}>
+                    <Input
+                        name="picture"
+                        id="picture"
+                        placeholder="Picture"
+                        onChange={handleChange}
+                        value={query.picture}
+                        required
+                        type="file"
+                        accept="image/jpg, image/png"
+                    />
+                </InLineInputContainer>
                 <Button style={{marginTop: '1em'}}>Create Listing</Button>
                 <Button onClick={goBack} style={{marginTop: '2em'}}>Go Back</Button>
             </Form>

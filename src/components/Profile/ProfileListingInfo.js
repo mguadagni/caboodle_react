@@ -48,7 +48,9 @@ const ProfileListingInfo = () => {
         <Container>
             <h1>Listing Information</h1>
             <BorderCard style={{alignItems: "center"}}>
-            <h2>Item: {profileListing.item}</h2> 
+            <h2>Item: {profileListing.item}</h2>
+            <h3>Description: </h3>
+            <h3 style={{marginTop: "0.1px", textAlign: "center"}}>{profileListing.description}</h3>
             <h4>
                 Price: {profileListing.price}
             </h4>

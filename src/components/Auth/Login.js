@@ -40,7 +40,7 @@ const Login = () => {
             //console.log(profileRes.data);
         } catch (error) {
             console.error(error.response ? error.response.data : error.message)
-            alert("User not found. Please try again.")
+            alert("Username or Password is incorrect. Please try again.")
         }
     }
 

@@ -12,10 +12,6 @@ const ListingInfo = (props) => {
     const [listing, setListing] = useState({});
     const [loading, setLoading] = useState(true);
 
-    const test = () => {
-        console.log(`${listingId}`);
-    }
-
     const navigate = useNavigate();
 
   const goBack = (e) => {
@@ -40,7 +36,7 @@ const ListingInfo = (props) => {
             });
             setListing(listingRes.data);
             setLoading(false);
-            // console.log(listing.data);
+            console.log(listingRes.data);
 
         } catch (error) {
         console.error(error.response ? error.response.data : error.message)
@@ -51,6 +47,10 @@ const ListingInfo = (props) => {
 
   let { listingId } = useParams();
 
+  const test = () => {
+    console.log(`${listing}`);
+}
+
     return (
         <Container>
         <h1>Listing Information</h1>
@@ -58,8 +58,10 @@ const ListingInfo = (props) => {
             {/* {test()}  */}
             
             <h2>Item: {listing.item}</h2> 
+            <h3>Description: </h3>
+            <h3 style={{marginTop: "0.1px", textAlign: "center"}}>{listing.description}</h3>
             <h4>
-                Price: {listing.price}
+                Price: ${listing.price}
             </h4>
             <div>
                 <button style={{marginRight: '1em'}} onClick={buyItem}>Buy</button>

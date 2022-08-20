@@ -13,6 +13,8 @@ const CreateListing = () => {
     const [query, setQuery] = useState({
         item: "",
         price:"",
+        description: "",
+        picture: ""
     })
 
     const updateForm = (field, value) => {
@@ -36,7 +38,7 @@ const CreateListing = () => {
             navigate('/listings');
         } catch (error) {
             console.error(error.response ? error.response.data : error.message)
-            alert("Invalid Listing Post.")
+            alert("Listing Post Error. Please try again.")
         }
     }
 
