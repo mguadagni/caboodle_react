@@ -38,9 +38,8 @@ const Navbar = (props) => {
         }}>
             {auth.profile ? ( 
               <Fragment> 
-                <NavButton to="/listings" label="Listings" />
+                <NavButton to ="/listings" label="Listings" />
                 <NavButton to="/profile" label={auth.profile.name} />
-                <NavButton to="/" label="Log Out" />
                </Fragment>
             ) : ( 
               <NavButton to="/login" label="Login" />

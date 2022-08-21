@@ -52,7 +52,7 @@ const ProfileListingInfo = () => {
             <h3>Description: </h3>
             <h3 style={{marginTop: "0.1px", textAlign: "center"}}>{profileListing.description}</h3>
             <h4>
-                Price: {profileListing.price}
+                Price: ${profileListing.price}
             </h4>
             <div>
                 <button style={{marginRight: '1em'}} onClick={updateListing}>Update</button>

@@ -12,10 +12,8 @@ const Listing = (props) => {
         
         navigate(`/listings/${listingId}`);
 
-        console.log(listingId);
+        //console.log(listingId);
     }
-
-    // let { listingId } = useParams();
 
     return (
             <BorderCard onClick={onClick}>

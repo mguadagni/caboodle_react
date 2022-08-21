@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Container from '../common/Container';
 import Form from '../common/Form';
 import InLineInputContainer from '../common/InlineInputContainer';
@@ -8,8 +8,16 @@ import {useNavigate} from 'react-router-dom';
 
 const CreateListingForm = ({query, updateForm, onSubmit}) => {
 
+    const [img, setImg] = useState();
+
     const handleChange = (e) => {
         updateForm(e.target.id, e.target.value)
+    }
+
+    const handleFileChange = (e) => {
+        updateForm(e.target.id, e.target.value)
+        const [file] = e.target.files;
+        setImg(URL.createObjectURL(file));
     }
 
     const handleSubmit = (e) => {
@@ -61,7 +69,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                         name="picture"
                         id="picture"
                         placeholder="Picture"
-                        onChange={handleChange}
+                        onChange={handleFileChange}
                         value={query.picture}
                         required
                         type="file"

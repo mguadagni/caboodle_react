@@ -11,6 +11,7 @@ const ListingInfo = (props) => {
     const [auth] = useContext(AuthContext);
     const [listing, setListing] = useState({});
     const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState("");
 
     const navigate = useNavigate();
 
@@ -36,7 +37,8 @@ const ListingInfo = (props) => {
             });
             setListing(listingRes.data);
             setLoading(false);
-            console.log(listingRes.data);
+            // console.log(listingRes.data.profile.user.username);
+            setUsername(listingRes.data.profile.user.username);
 
         } catch (error) {
         console.error(error.response ? error.response.data : error.message)
@@ -48,16 +50,17 @@ const ListingInfo = (props) => {
   let { listingId } = useParams();
 
   const test = () => {
-    console.log(`${listing}`);
+    console.log(listing);
 }
 
     return (
         <Container>
         <h1>Listing Information</h1>
         <BorderCard style={{alignItems: "center"}}>
-            {/* {test()}  */}
+            {test()} 
             
             <h2>Item: {listing.item}</h2> 
+            <h3>Posted by: {username}</h3>
             <h3>Description: </h3>
             <h3 style={{marginTop: "0.1px", textAlign: "center"}}>{listing.description}</h3>
             <h4>
