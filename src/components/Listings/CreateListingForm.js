@@ -32,7 +32,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
 
     return (
         <Container>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} enctype="multipart/form-data">
                 <InLineInputContainer style={{marginTop: '1em'}}>
                     <Input
                         name="item"
@@ -64,7 +64,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                         required
                     />
                 </InLineInputContainer>
-                <InLineInputContainer style={{marginTop: '1em'}}>
+                <InLineInputContainer style={{marginTop: '1em'}} >
                     <Input
                         name="picture"
                         id="picture"
@@ -73,7 +73,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                         value={query.picture}
                         required
                         type="file"
-                        accept="image/jpg, image/png"
+                        accept="image/jpeg, image/png"
                     />
                 </InLineInputContainer>
                 <Button style={{marginTop: '1em'}}>Create Listing</Button>
