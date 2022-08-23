@@ -5,6 +5,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import Container from "../common/Container";
 import axios from "axios";
 import { apiHostUrl } from "../../config";
+import img from "../Listings/CreateListingForm"
 
 const ListingInfo = (props) => {
 
@@ -12,6 +13,7 @@ const ListingInfo = (props) => {
     const [listing, setListing] = useState({});
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState("");
+    //const [img, setImg] = useState();
 
     const navigate = useNavigate();
 
@@ -61,6 +63,7 @@ const ListingInfo = (props) => {
             
             <h2>Item: {listing.item}</h2> 
             <h3>Posted by: {username}</h3>
+            <img src={props.img} />
             <h3>Description: </h3>
             <h3 style={{marginTop: "0.1px", textAlign: "center"}}>{listing.description}</h3>
             <h4>

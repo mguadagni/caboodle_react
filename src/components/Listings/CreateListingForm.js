@@ -79,6 +79,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                 <Button style={{marginTop: '1em'}}>Create Listing</Button>
                 <Button onClick={goBack} style={{marginTop: '2em'}}>Go Back</Button>
             </Form>
+            <img src={img} />
         </Container>
     )
 }
