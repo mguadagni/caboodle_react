@@ -54,7 +54,7 @@ const Listings = () => {
   return (
     <Container>
       <h1>Listings</h1>
-      <Button onClick={handleCreateListing}>Post a Listing</Button>
+      <Button onClick={handleCreateListing} style={{width: "25%"}}>Post a Listing</Button>
 
       {loading ? (<p>Loading...</p>) : 
         displayListings()

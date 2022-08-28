@@ -18,11 +18,25 @@ const ProfileListingInfo = () => {
   }
 
   const updateListing = () => {
-    alert('Success')
+    navigate('/createListing')
+    
+    //alert(`${listingId}`)
+    //console.log(`${listingId}`);
   }
 
-  const deleteListing = () => {
-    alert('Success')
+  const deleteListing = async () => {
+    try {
+        const res = await axios.delete(`${apiHostUrl}/listings/${listingId}`, {
+            headers: {
+                Authorization: `Bearer ${auth.token}`
+            }
+        });
+        alert('Listing has been deleted.')
+        navigate('/profile')
+
+    } catch (error) {
+    console.error(error.response ? error.response.data : error.message)
+    }
   }
 
   useEffect(() => {

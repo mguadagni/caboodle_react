@@ -32,7 +32,7 @@ const Profile = (props) => {
                 <h3 style={{marginTop: "1px"}}>Age: {auth.profile.age} </h3>
                 <h3 style={{marginTop: "1px"}}>Current Balance: ${auth.profile.balance} </h3>
             </BorderCard>
-            <Button onClick={onClick} style={{backgroundColor: '#DC143C'}}>Log Out</Button>
+            <Button onClick={onClick} style={{backgroundColor: '#DC143C', width: "25%"}}>Log Out</Button>
             <h2 style={{marginTop: "2em"}}>Current Listings</h2>
             <ProfileListings />
             

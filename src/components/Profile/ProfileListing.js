@@ -11,7 +11,7 @@ const ProfileListing = (props) => {
         
         navigate(`/profileListings/${listingId}`);
 
-        console.log(listingId);
+        //console.log(listingId);
     }
 
     return (
