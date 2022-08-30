@@ -1,23 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Container from '../common/Container';
 import Form from '../common/Form';
 import InLineInputContainer from '../common/InlineInputContainer';
 import Input from '../common/Input';
 import Button from '../common/Button';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import axios from 'axios';
+import { apiHostUrl } from '../../config';
+import { AuthContext } from '../Providers/AuthProvider';
 
-const CreateListingForm = ({query, updateForm, onSubmit}) => {
+const UpdateListingForm = ({query, updateForm, onSubmit}) => {
 
-    const [img, setImg] = useState();
+    const [data, setData] = useState({});
+    const [auth] = useContext(AuthContext);
 
     const handleChange = (e) => {
         updateForm(e.target.id, e.target.value)
-    }
-
-    const handleFileChange = (e) => {
-        updateForm(e.target.id, e.target.value)
-        const [file] = e.target.files;
-        setImg(URL.createObjectURL(file));
     }
 
     const handleSubmit = (e) => {
@@ -27,19 +25,38 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
     const navigate = useNavigate();
 
     const goBack = (e) => {
-        navigate('/listings');
+        navigate('/profile');
     }
+
+    let { listingId } = useParams();
+
+    useEffect(() => {
+        const getListingInfo = async () => {
+            try {
+                const listingRes = await axios.get(`${apiHostUrl}/listings/${listingId}`, {
+                    headers: {
+                        Authorization: `Bearer ${auth.token}`
+                    }
+                });
+                setData(listingRes.data);
+    
+            } catch (error) {
+            console.error(error.response ? error.response.data : error.message)
+            }
+        }
+        getListingInfo();
+        }, [])
 
     return (
         <Container>
-            <Form onSubmit={handleSubmit} enctype="multipart/form-data">
+            <Form onSubmit={handleSubmit}>
                 <InLineInputContainer style={{marginTop: '1em'}}>
                     <Input
                         name="item"
                         id="item"
                         placeholder="Item"
                         onChange={handleChange}
-                        value={query.item}
+                        value={data.item}
                         required
                     />
                 </InLineInputContainer>
@@ -49,7 +66,7 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                         id="price"
                         placeholder="Price"
                         onChange={handleChange}
-                        value={query.price}
+                        value={data.price}
                         required
                         type="number"
                     />
@@ -60,28 +77,15 @@ const CreateListingForm = ({query, updateForm, onSubmit}) => {
                         id="description"
                         placeholder="Description"
                         onChange={handleChange}
-                        value={query.description}
+                        value={data.description}
                         required
                     />
                 </InLineInputContainer>
-                <InLineInputContainer style={{marginTop: '1em'}} >
-                    <Input
-                        name="picture"
-                        id="picture"
-                        placeholder="Picture"
-                        onChange={handleFileChange}
-                        value={query.picture}
-                        required
-                        type="file"
-                        accept="image/jpeg, image/png"
-                    />
-                </InLineInputContainer>
-                <Button style={{marginTop: '1em'}}>Create Listing</Button>
+                <Button style={{marginTop: '1em'}}>Update Listing</Button>
                 <Button onClick={goBack} style={{marginTop: '2em'}}>Go Back</Button>
             </Form>
-            <img src={img} />
         </Container>
     )
 }
 
-export default CreateListingForm;
+export default UpdateListingForm;

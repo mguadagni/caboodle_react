@@ -11,6 +11,7 @@ import CreateListing from '../Listings/CreateListing';
 import ListingInfo from "../Listings/ListingInfo";
 import Listing from "../Listings/Listing";
 import ProfileListingInfo from "../Profile/ProfileListingInfo";
+import UpdateListing from "../Profile/UpdateListing";
 
 const AppRouter = () => {
 
@@ -26,6 +27,7 @@ const AppRouter = () => {
                 <Route path="/createListing" element={<CreateListing />} />
                 <Route path="/listings/:listingId" element={<ListingInfo />} />
                 <Route path="/profileListings/:listingId" element={<ProfileListingInfo />} />
+                <Route path="/updateListings/:listingId" element={<UpdateListing />} />
             </Routes>
         </Container>
     )

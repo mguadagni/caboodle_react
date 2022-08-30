@@ -18,7 +18,7 @@ const ProfileListingInfo = () => {
   }
 
   const updateListing = () => {
-    navigate('/createListing')
+    navigate(`/updateListings/${listingId}`)
     
     //alert(`${listingId}`)
     //console.log(`${listingId}`);

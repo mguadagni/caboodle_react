@@ -13,7 +13,7 @@ const ListingInfo = (props) => {
     const [listing, setListing] = useState({});
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState("");
-    //const [img, setImg] = useState();
+    const [img, setImg] = useState();
 
     const navigate = useNavigate();
 
@@ -43,10 +43,28 @@ const ListingInfo = (props) => {
             setUsername(listingRes.data.profile.user.username);
 
         } catch (error) {
-        console.error(error.response ? error.response.data : error.message)
+            console.error(error.response ? error.response.data : error.message)
         }
     }
     getListingInfo();
+    }, [])
+    
+    useEffect(() => {
+        const getPicture = async () => {
+            try {
+                const pictureRes = await axios.get(`${apiHostUrl}/listings/${listingId}/picture`, {
+                    headers: {
+                        Authorization: `Bearer ${auth.token}`
+                    }
+                });
+                setImg(URL.createObjectURL(new Blob(pictureRes)));
+                console.log(img);
+
+            } catch (error) {
+                console.error(error.response ? error.response.data : error.message)
+            }
+        }
+        getPicture();
     }, [])
 
   let { listingId } = useParams();
@@ -63,7 +81,7 @@ const ListingInfo = (props) => {
             
             <h2>Item: {listing.item}</h2> 
             <h3>Posted by: {username}</h3>
-            <img src={props.img} />
+            <img src={img} />
             <h3>Description: </h3>
             <h3 style={{marginTop: "0.1px", textAlign: "center"}}>{listing.description}</h3>
             <h4>
