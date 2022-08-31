@@ -13,9 +13,9 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
 
     const [data, setData] = useState({});
     const [auth] = useContext(AuthContext);
-    const [item, setItem] = useState({});
-    const [price, setPrice] = useState({});
-    const [description, setDescription] = useState({});
+    // const [item, setItem] = useState({});
+    // const [price, setPrice] = useState({});
+    // const [description, setDescription] = useState({});
 
 
     const handleChange = (e) => {
@@ -24,9 +24,9 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
 
     const handleSubmit = (e) => {
         onSubmit(e);
-        console.log(item);
-        console.log(price);
-        console.log(description);
+        // console.log(item);
+        // console.log(price);
+        // console.log(description);
     }
 
     const navigate = useNavigate();
@@ -46,9 +46,9 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
                     }
                 });
                 setData(listingRes.data);
-                setItem(data.item);
-                setDescription(data.description);
-                setPrice(data.price);
+                //setItem(data.item);
+                //setDescription(data.description);
+                //setPrice(data.price);
     
             } catch (error) {
             console.error(error.response ? error.response.data : error.message)
