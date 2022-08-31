@@ -13,6 +13,10 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
 
     const [data, setData] = useState({});
     const [auth] = useContext(AuthContext);
+    const [item, setItem] = useState({});
+    const [price, setPrice] = useState({});
+    const [description, setDescription] = useState({});
+
 
     const handleChange = (e) => {
         updateForm(e.target.id, e.target.value)
@@ -20,6 +24,9 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
 
     const handleSubmit = (e) => {
         onSubmit(e);
+        console.log(item);
+        console.log(price);
+        console.log(description);
     }
 
     const navigate = useNavigate();
@@ -39,6 +46,9 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
                     }
                 });
                 setData(listingRes.data);
+                setItem(data.item);
+                setDescription(data.description);
+                setPrice(data.price);
     
             } catch (error) {
             console.error(error.response ? error.response.data : error.message)
@@ -55,7 +65,7 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
                         name="item"
                         id="item"
                         placeholder="Item"
-                        onChange={handleChange}
+                        onChange={/*(e)=>{setItem(e.target.value)}*/handleChange}
                         value={data.item}
                         required
                     />
@@ -65,7 +75,7 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
                         name="price"
                         id="price"
                         placeholder="Price"
-                        onChange={handleChange}
+                        onChange={/*(e)=>{setPrice(e.target.value)}*/handleChange}
                         value={data.price}
                         required
                         type="number"
@@ -76,7 +86,7 @@ const UpdateListingForm = ({query, updateForm, onSubmit}) => {
                         name="description"
                         id="description"
                         placeholder="Description"
-                        onChange={handleChange}
+                        onChange={/*(e)=>{setDescription(e.target.value)}*/handleChange}
                         value={data.description}
                         required
                     />

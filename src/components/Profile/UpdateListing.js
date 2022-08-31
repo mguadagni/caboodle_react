@@ -28,7 +28,7 @@ const UpdateListing = () => {
 
     const onSubmit = async () => {
         try {
-            const listingRes = await axios.put(`${apiHostUrl}/listings/updateListings/${listingId}`, 
+            const listingRes = await axios.put(`${apiHostUrl}/listings/updateListing/${listingId}`, 
             query, {
                 headers: {
                     Authorization: `Bearer ${auth.token}`
